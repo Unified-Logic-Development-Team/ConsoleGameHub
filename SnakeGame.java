@@ -22,7 +22,7 @@ class SnakeGame implements Game {
         System.out.println("Welcome to Snake Game!");
         System.out.println("Collect food to grow your snake,");
         System.out.println("but if you run into yourself,");
-	System.out.println("or the edge of the grid, you lose!");
+		System.out.println("or the edge of the grid, you lose!");
 
         return Optional.empty();
     }
