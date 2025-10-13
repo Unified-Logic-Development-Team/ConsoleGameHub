@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ConsoleGameHub">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/jar/ConsoleGameHub.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
