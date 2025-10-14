@@ -10,7 +10,7 @@ doc/
 .mtj.tmp/
 hs_err_pid*
 replay_pid*
-*.idea
+.idea
 
 # Windows Section
 Thumbs.db
