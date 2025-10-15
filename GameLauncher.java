@@ -98,11 +98,11 @@ public class GameLauncher {
         while (running) {
 	    System.out.println("\n=== Console Game Hub ===\n");
             System.out.println(
-                   "  __  __ ___ _  _ _   _ \n" +
-                           " |  \\/  | __| \\| | | | |\n" +
-                           " | |\\/| | _|| .` | |_| |\n" +
-                           " |_|  |_|___|_|\\_|\\___/ \n" +
-                           "                        "
+ "  __  __ ___ _  _ _   _ \n" +
++ " |  \\/  | __| \\| | | | |\n"
++ " | |\\/| | _|| .` | |_| |\n"
++ " |_|  |_|___|_|\\_|\\___/ \n"
++ "\n"
                     );
             for (int i = 0; i < this.games.size(); i++) {
                 System.out.printf("%d. %s\n",
