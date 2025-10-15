@@ -96,7 +96,7 @@ public class GameLauncher {
     protected void run() {
         boolean running = true;
         while (running) {
-	    System.out.println("\n=== Console Game Hub ===\n");
+	    System.out.println("=== Console Game Hub ===\n");
             System.out.println(
 "  __  __ ___ _  _ _   _ \n"
 + " |  \\/  | __| \\| | | | |\n"
