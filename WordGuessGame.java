@@ -20,6 +20,9 @@ class WordGuessGame implements Game {
     /** Total number of guesses allowed. */
     private static final int MAX_GUESSES = 6;
 
+    /** Total number of characters allowed. */
+    private static final int CHARACTER_LIMIT = 5;
+
     /**
      * {@inheritDoc}
      * @return the game name
@@ -69,8 +72,17 @@ class WordGuessGame implements Game {
 
             guessesMade++;
 
-            if (userGuess.equals(secret)) {
+            // Reject input that contains numbers or is not 5 letters
+            if (userGuess.length() != CHARACTER_LIMIT
+                  ||  !userGuess.matches("[a-zA-Z]+")) {
+                System.out.println("Please enter a 5-letter word.");
+                guessesMade--;
+            }
+
+            if (userGuess.equals(secret)
+                  && userGuess.length() == CHARACTER_LIMIT) {
                 int remaining = MAX_GUESSES - guessesMade + 1;
+                System.out.println("Correct! The word was " + secret + "!");
                 return Optional.of(remaining);
             }
 
@@ -99,7 +111,18 @@ class WordGuessGame implements Game {
                 sb.append(c);
             }
 
-            System.out.println("Letters in common: " + sb);
+            // Show letters in common, only if guess
+            // is 5 characters and contains only letters
+            if (userGuess.length() == CHARACTER_LIMIT
+                    && userGuess.matches("[a-zA-Z]+")) {
+                System.out.println("Letters in common: " + sb);
+            }
+            System.out.println("Guesses made: " + guessesMade + "/6");
+        }
+
+        if (guessesMade >= MAX_GUESSES) {
+            System.out.println("You're out of guesses. You lose. The word was "
+                    + secret + ".");
         }
 
         // Out of attempts.
