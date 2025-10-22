@@ -71,6 +71,7 @@ class WordGuessGame implements Game {
 
             if (userGuess.equals(secret)) {
                 int remaining = MAX_GUESSES - guessesMade + 1;
+                System.out.println("Correct! The word was " + secret + "!");
                 return Optional.of(remaining);
             }
 
@@ -100,6 +101,12 @@ class WordGuessGame implements Game {
             }
 
             System.out.println("Letters in common: " + sb);
+            System.out.println("Guesses made: " + guessesMade + "/6");
+        }
+
+        if (guessesMade >= MAX_GUESSES) {
+            System.out.println("You're out of guesses. You lose. The word was "
+                    + secret + ".");
         }
 
         // Out of attempts.
