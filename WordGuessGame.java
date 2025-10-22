@@ -10,7 +10,7 @@ import java.util.Set;
  * The player gets a limited number of attempts to guess a secret
  * five-letter word. After each valid guess, feedback is printed.
  * The score is the number of attempts remaining when the player wins.
- * @version 4
+ * @version 1
  */
 class WordGuessGame implements Game {
 
