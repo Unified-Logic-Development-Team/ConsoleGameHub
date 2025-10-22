@@ -62,7 +62,6 @@ public class JottoGame implements Game {
         int attemptsLeft = MAX_GUESSES;
 
         while (attemptsLeft > 0) {
- 	    System.out.println("You have " + attemptsLeft + " guesses remaining.");
             System.out.print("Enter guess: ");
             String guess = scanner.nextLine().trim().toUpperCase();
 
