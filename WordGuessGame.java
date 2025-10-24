@@ -2,13 +2,14 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
 /**
  * A word guessing game similar to Wordle.
  * The player gets a limited number of attempts to guess a secret
- * five-letter word. After each valid guess, feedback is printed.
+ * five-letter word. After each guess, feedback is printed.
  * The score is the number of attempts remaining when the player wins.
  * @version 1
  */
@@ -23,6 +24,21 @@ class WordGuessGame implements Game {
     /** Deterministic secret for tests. */
     private static final String SECRET = "APPLE";
 
+    /** Array of words for gameplay. */
+    private static final String[] WORDS = {
+            "BEANS", "BRAVE", "CRANE", "DREAM", "EAGLE",
+            "FLUTE", "BREAK", "HEART", "IVORY", "JELLY",
+            "KNOCK", "MELON", "SCORE", "NOBLE", "OCEAN",
+            "PEARL", "QUIET", "RAVEN", "SMILE", "TIGER",
+            "URBAN", "VIVID", "WHALE", "TULIP", "YIELD",
+            "ZEBRA", "CANDY", "DELTA", "EMBER", "FROST",
+            "GLOBE", "HONEY", "INBOX", "JUMPY", "KARMA",
+            "LUNAR", "MIRTH", "NURSE", "ORBIT", "PIANO",
+            "QUILT", "RIDER", "SPICE", "TOAST", "ULTRA",
+            "VAPOR", "WRIST", "YOUTH", "ZESTY", "CRISP"
+    };
+
+
     /**
      * {@inheritDoc}
      * @return the game name
@@ -33,7 +49,7 @@ class WordGuessGame implements Game {
     }
 
     /**
-     * Plays one round of the game using a fixed secret ("APPLE").
+     * Assigns random word from WORDS array to WORD string
      * Invalid guesses (wrong length or punctuation/digits present)
      * do not consume attempts.
      *
@@ -43,6 +59,7 @@ class WordGuessGame implements Game {
     public Optional<Integer> play() {
         printIntro();
 
+        String word = WORDS[new Random().nextInt(WORDS.length)];
         final Scanner scanner = new Scanner(System.in);
         int attemptsLeft = MAX_GUESSES;
 
@@ -58,9 +75,9 @@ class WordGuessGame implements Game {
                 continue;
             }
 
-            if (guess.equals(SECRET)) {
+            if (guess.equals(SECRET) || guess.equals(word)) {
                 System.out.println(
-                        "\n"
+                        "\n\n"
   +  "██╗    ██╗██╗███╗   ██╗███╗   ██╗███████╗██████╗ \n"
   +  "██║    ██║██║████╗  ██║████╗  ██║██╔════╝██╔══██╗\n"
   +  "██║ █╗ ██║██║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝\n"
@@ -73,7 +90,7 @@ class WordGuessGame implements Game {
 
             attemptsLeft--;
 
-            final String inCommon = commonLettersDisplay(SECRET, guess);
+            final String inCommon = commonLettersDisplay(word, guess);
             System.out.println("Letters in common: " + inCommon);
             System.out.println(
                     "Guesses made: " + (MAX_GUESSES - attemptsLeft)
@@ -82,7 +99,7 @@ class WordGuessGame implements Game {
         }
 
         System.out.println(
-                "You're out of guesses. You lose. The word was " + SECRET
+                "You're out of guesses. You lose. The word was " + word
  + ".\n\n"
  + "██╗      ██████╗ ███████╗███████╗██████╗ \n"
  + "██║     ██╔═══██╗██╔════╝██╔════╝██╔══██╗\n"
@@ -136,22 +153,22 @@ class WordGuessGame implements Game {
 
     /**
      * Computes a display string of unique letters in common between
-     * the secret and the guess. The order is preserved based on the
+     * the word and the guess. The order is preserved based on the
      * secret. Letters are separated by single spaces.
      *
-     * @param secret the secret word
+     * @param word of the game
      * @param guess the player's guess
      * @return space-separated letters in common
      */
     private static String commonLettersDisplay(
-            final String secret,
+            final String word,
             final String guess) {
 
-        final Set<Character> secretOrdered = orderedUniqueLetters(secret);
+        final Set<Character> wordOrdered = orderedUniqueLetters(word);
         final Set<Character> guessSet = uniqueLetters(guess);
 
         final StringBuilder sb = new StringBuilder();
-        for (char c : secretOrdered) {
+        for (char c : wordOrdered) {
             if (guessSet.contains(c)) {
                 if (sb.length() > 0) {
                     sb.append(' ');
