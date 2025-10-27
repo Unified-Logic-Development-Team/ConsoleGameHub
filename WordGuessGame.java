@@ -16,7 +16,7 @@ import java.util.Set;
 class WordGuessGame implements Game {
 
     /** Total number of guesses allowed. */
-    private static final int MAX_GUESSES = 6;
+    private static final int MAX_GUESSES = 10;
 
     /** Required word length. */
     private static final int WORD_LENGTH = 5;
@@ -211,3 +211,4 @@ class WordGuessGame implements Game {
         return out;
     }
 }
+
