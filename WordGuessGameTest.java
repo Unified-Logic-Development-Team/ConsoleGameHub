@@ -22,7 +22,7 @@ public class WordGuessGameTest {
         Optional<Integer> result = game.play();
 
         assertTrue(result.isPresent());
-        assertEquals(6, result.get());
+        assertEquals(10, result.get());
 
         System.setIn(originalIn);
     }
@@ -37,14 +37,14 @@ public class WordGuessGameTest {
         Optional<Integer> result = game.play();
 
         assertTrue(result.isPresent());
-        assertEquals(5, result.get());
+        assertEquals(9, result.get());
 
         System.setIn(originalIn);
     }
 
     @Test
     public void testAllIncorrectGuesses() {
-        String simulatedInput = "MANGO\nGRAPE\nPLUMB\nBERRY\nPEACH\nLEMON\n";
+        String simulatedInput = "MANGO\nGRAPE\nPLUMB\nBERRY\nPEACH\nLEMON\nCHILI\nGUAVA\nOLIVE\nONION\n";
         InputStream originalIn = System.in;
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
@@ -57,3 +57,4 @@ public class WordGuessGameTest {
         System.setIn(originalIn);
     }
 }
+
