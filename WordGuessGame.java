@@ -91,7 +91,8 @@ class WordGuessGame implements Game {
             attemptsLeft--;
 
             final String inCommon = commonLettersDisplay(word, guess);
-            System.out.println("Letters in common: " + inCommon);
+            System.out.println("Incorrect guess. Letters in common: "
+                            + inCommon);
             System.out.println(
                     "Guesses made: " + (MAX_GUESSES - attemptsLeft)
                             + "/" + MAX_GUESSES
@@ -211,4 +212,6 @@ class WordGuessGame implements Game {
         return out;
     }
 }
+
+
 
